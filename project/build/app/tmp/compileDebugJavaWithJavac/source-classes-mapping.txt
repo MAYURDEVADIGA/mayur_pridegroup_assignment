@@ -1,0 +1,4 @@
+io/flutter/plugins/GeneratedPluginRegistrant.java
+ io.flutter.plugins.GeneratedPluginRegistrant
+com/example/mayur_pridegroup_assignment/BuildConfig.java
+ com.example.mayur_pridegroup_assignment.BuildConfig
