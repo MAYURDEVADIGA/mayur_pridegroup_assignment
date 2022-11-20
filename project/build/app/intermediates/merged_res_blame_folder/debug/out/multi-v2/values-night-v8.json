@@ -1,10 +1,10 @@
 {
     "logs": [
         {
-            "outputFile": "C:\\Users\\ASUS\\AndroidStudioProjects\\mayur_pridegroup_assignment\\build\\app\\intermediates\\incremental\\mergeDebugResources\\merged.dir\\values-night-v8\\values-night-v8.xml",
+            "outputFile": "C:\\Users\\ASUS\\Desktop\\MANIPAL\\Placements\\Pride Group\\mayur_pridegroup_assignment-1\\project\\build\\app\\intermediates\\incremental\\mergeDebugResources\\merged.dir\\values-night-v8\\values-night-v8.xml",
             "map": [
                 {
-                    "source": "C:\\Users\\ASUS\\AndroidStudioProjects\\mayur_pridegroup_assignment\\android\\app\\src\\main\\res\\values-night\\styles.xml",
+                    "source": "C:\\Users\\ASUS\\Desktop\\MANIPAL\\Placements\\Pride Group\\mayur_pridegroup_assignment-1\\project\\android\\app\\src\\main\\res\\values-night\\styles.xml",
                     "from": {
                         "startLines": "3,14",
                         "startColumns": "4,4",

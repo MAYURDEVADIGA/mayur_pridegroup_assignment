@@ -1,4 +1,4 @@
-#Sat Nov 19 21:29:58 GST 2022
-base.0=C\:\\Users\\ASUS\\AndroidStudioProjects\\mayur_pridegroup_assignment\\build\\app\\intermediates\\dex\\debug\\mergeDexDebug\\classes.dex
+#Mon Nov 21 02:37:44 GST 2022
+base.0=C\:\\Users\\ASUS\\Desktop\\MANIPAL\\Placements\\Pride Group\\mayur_pridegroup_assignment-1\\project\\build\\app\\intermediates\\dex\\debug\\mergeDexDebug\\classes.dex
 renamed.0=classes.dex
 path.0=classes.dex

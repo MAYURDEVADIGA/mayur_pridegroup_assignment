@@ -1,3 +1,4 @@
+import 'package:candlesticks/candlesticks.dart';
 import 'package:equatable/equatable.dart';
 import 'package:mayur_pridegroup_assignment/repositories/currency_pairs_repository.dart';
 
@@ -10,6 +11,7 @@ class CurrencyPair extends Equatable {
   final double ask1;
   final double ask2;
   final double ask3;
+  final List<Candle> candles;
 
   const CurrencyPair({
     required this.icon,
@@ -20,6 +22,7 @@ class CurrencyPair extends Equatable {
     required this.ask1,
     required this.ask2,
     required this.ask3,
+    this.candles = const [],
   });
 
   @override
