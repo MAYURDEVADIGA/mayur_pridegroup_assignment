@@ -3,8 +3,8 @@ import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:mayur_pridegroup_assignment/bloc/currency_pair_bloc.dart';
-
-import '../constants.dart';
+import 'package:mayur_pridegroup_assignment/widgets/app_floating_action_button_widget.dart';
+import 'package:mayur_pridegroup_assignment/widgets/white_text_widget.dart';
 
 class CandleScreen extends StatefulWidget {
   const CandleScreen({Key? key}) : super(key: key);
@@ -39,7 +39,7 @@ class _CandleScreenState extends State<CandleScreen> {
                     SizedBox(
                       height: 15,
                     ),
-                    WhiteText(title: 'Populating Candle Sticks'),
+                    WhiteText(title: 'Populating Candle Sticks ()'),
                   ],
                 ),
               );
@@ -65,16 +65,14 @@ class _CandleScreenState extends State<CandleScreen> {
                 child: WhiteText(title: 'Something went wrong'));
           }
         }),
-        floatingActionButton: FloatingActionButton(
-          backgroundColor: Colors.grey.withOpacity(0.5),
-          child: const Icon(
-            Icons.arrow_back,
-            color: Colors.white,
-          ),
-          onPressed: () {
-            Navigator.pop(context);
-          },
-        ),
+        floatingActionButton: AppFloatingActionButton(
+            icon: const Icon(
+              Icons.arrow_back,
+              color: Colors.white,
+            ),
+            onPressed: () {
+              Navigator.pop(context);
+            }),
       ),
     );
   }

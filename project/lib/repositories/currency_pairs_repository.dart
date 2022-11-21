@@ -1,7 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:mayur_pridegroup_assignment/models/currency_pair.dart';
-
-import '../constants.dart';
+import 'package:mayur_pridegroup_assignment/widgets/white_text_widget.dart';
 
 List<CurrencyPair> currencyPairs = <CurrencyPair>[
   CurrencyPair(

@@ -5,27 +5,17 @@ import 'package:candlesticks/candlesticks.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:mayur_pridegroup_assignment/bloc/currency_pair_bloc.dart';
-import 'package:mayur_pridegroup_assignment/constants.dart';
+import 'package:mayur_pridegroup_assignment/pages/candle_screen.dart';
 import 'package:mayur_pridegroup_assignment/repositories/currency_pairs_repository.dart';
-import 'candle_screen.dart';
+import 'package:mayur_pridegroup_assignment/widgets/app_floating_action_button_widget.dart';
+import 'package:mayur_pridegroup_assignment/widgets/currency_pair_container_widget.dart';
+import 'package:mayur_pridegroup_assignment/widgets/custom_app_bar_widget.dart';
 
 class MyHomePage extends StatefulWidget {
   const MyHomePage({Key? key}) : super(key: key);
 
   @override
   State<MyHomePage> createState() => _MyHomePageState();
-}
-
-void computeHeavyTask(SendPort sendPort) {
-  double bid1 = Random().nextDouble() * 100;
-  double bid2 = Random().nextDouble() * 100;
-  double bid3 = Random().nextDouble() * 100;
-  double ask1 = Random().nextDouble() * 100;
-  double ask2 = Random().nextDouble() * 100;
-  double ask3 = Random().nextDouble() * 100;
-  List res = [bid1, bid2, bid3, ask1, ask2, ask3];
-
-  sendPort.send(res);
 }
 
 class _MyHomePageState extends State<MyHomePage> {
@@ -43,8 +33,6 @@ class _MyHomePageState extends State<MyHomePage> {
 
   @override
   Widget build(BuildContext context) {
-    double width = MediaQuery.of(context).size.width;
-
     return Scaffold(
       backgroundColor: Colors.black,
       appBar: const CustomAppBar(),
@@ -64,7 +52,7 @@ class _MyHomePageState extends State<MyHomePage> {
                 double previousBid = state.currencyPairs[i].bid2;
                 double previousAsk = state.currencyPairs[i].ask2;
                 final receivePort = ReceivePort();
-                await Isolate.spawn(computeHeavyTask, receivePort.sendPort);
+                await Isolate.spawn(randomizeValues, receivePort.sendPort);
                 receivePort.listen((res) {
                   context.read<CurrencyPairBloc>().add(ChangeBids(
                         i,
@@ -100,97 +88,18 @@ class _MyHomePageState extends State<MyHomePage> {
               child: Column(
                 children: [
                   for (int i = 0; i < state.currencyPairs.length; i++)
-                    Container(
-                      margin: const EdgeInsets.only(top: 5),
-                      padding: const EdgeInsets.symmetric(horizontal: 10),
-                      width: width,
-                      height: 70,
-                      color: Colors.grey[900],
-                      child: Row(
-                        mainAxisSize: MainAxisSize.max,
-                        children: [
-                          Flexible(
-                            flex: 1,
-                            child: Row(
-                              mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                              children: [
-                                state.currencyPairs[i].icon,
-                                WhiteText(
-                                    title: state.currencyPairs[i].title,
-                                    size: 20,
-                                    fontWeight: FontWeight.bold),
-                              ],
-                            ),
-                          ),
-                          Flexible(
-                              flex: 3,
-                              child: Row(
-                                mainAxisAlignment: MainAxisAlignment.end,
-                                children: [
-                                  Container(
-                                    color: bidBgColor[i],
-                                    width: 135,
-                                    height: 70,
-                                    child: Center(
-                                      child: Row(
-                                        crossAxisAlignment:
-                                            CrossAxisAlignment.start,
-                                        mainAxisAlignment:
-                                            MainAxisAlignment.end,
-                                        children: [
-                                          WhiteText(
-                                            title: state.currencyPairs[i].bid1
-                                                .toStringAsFixed(2),
-                                          ),
-                                          WhiteText(
-                                              title: state.currencyPairs[i].bid2
-                                                  .toStringAsFixed(0),
-                                              size: 30),
-                                          WhiteText(
-                                            title: state.currencyPairs[i].bid3
-                                                .toStringAsFixed(0),
-                                            size: 15,
-                                          )
-                                        ],
-                                      ),
-                                    ),
-                                  ),
-                                  const SizedBox(
-                                    width: 3,
-                                  ),
-                                  Container(
-                                    color: askBgColor[i],
-                                    width: 135,
-                                    height: 70,
-                                    child: Center(
-                                      child: Row(
-                                        crossAxisAlignment:
-                                            CrossAxisAlignment.start,
-                                        mainAxisAlignment:
-                                            MainAxisAlignment.end,
-                                        children: [
-                                          WhiteText(
-                                            title: state.currencyPairs[i].ask1
-                                                .toStringAsFixed(2),
-                                            //size: 18,
-                                          ),
-                                          WhiteText(
-                                              title: state.currencyPairs[i].ask2
-                                                  .toStringAsFixed(0),
-                                              size: 30),
-                                          WhiteText(
-                                            title: state.currencyPairs[i].ask3
-                                                .toStringAsFixed(0),
-                                            size: 15,
-                                          )
-                                        ],
-                                      ),
-                                    ),
-                                  ),
-                                ],
-                              )),
-                        ],
-                      ),
+                    CurrencyPairContainer(
+                      i: i,
+                      bidBgColor: bidBgColor,
+                      askBgColor: askBgColor,
+                      icon: state.currencyPairs[i].icon,
+                      title: state.currencyPairs[i].title,
+                      bid1: state.currencyPairs[i].bid1,
+                      bid2: state.currencyPairs[i].bid2,
+                      bid3: state.currencyPairs[i].bid3,
+                      ask1: state.currencyPairs[i].ask1,
+                      ask2: state.currencyPairs[i].ask2,
+                      ask3: state.currencyPairs[i].ask3,
                     ),
                 ],
               ),
@@ -200,9 +109,8 @@ class _MyHomePageState extends State<MyHomePage> {
           }
         },
       ),
-      floatingActionButton: FloatingActionButton(
-        backgroundColor: Colors.grey.withOpacity(0.5),
-        child: const Icon(Icons.bar_chart, color: Colors.white),
+      floatingActionButton: AppFloatingActionButton(
+        icon: const Icon(Icons.bar_chart, color: Colors.white),
         onPressed: () {
           Navigator.push(
             context,
@@ -214,48 +122,14 @@ class _MyHomePageState extends State<MyHomePage> {
   }
 }
 
-class CustomAppBar extends StatelessWidget with PreferredSizeWidget {
-  const CustomAppBar({
-    Key? key,
-  }) : super(key: key);
+void randomizeValues(SendPort sendPort) {
+  double bid1 = Random().nextDouble() * 100;
+  double bid2 = Random().nextDouble() * 100;
+  double bid3 = Random().nextDouble() * 100;
+  double ask1 = Random().nextDouble() * 100;
+  double ask2 = Random().nextDouble() * 100;
+  double ask3 = Random().nextDouble() * 100;
+  List res = [bid1, bid2, bid3, ask1, ask2, ask3];
 
-  @override
-  Widget build(BuildContext context) {
-    return AppBar(
-      backgroundColor: Colors.black,
-      title: Row(
-        mainAxisSize: MainAxisSize.max,
-        children: [
-          Flexible(
-            flex: 1,
-            child: Row(
-              mainAxisAlignment: MainAxisAlignment.spaceBetween,
-              children: const [
-                WhiteText(
-                  title: '!',
-                  fontStyle: FontStyle.italic,
-                ),
-                WhiteText(title: 'Symbol'),
-              ],
-            ),
-          ),
-          Flexible(
-              flex: 3,
-              child: Row(
-                mainAxisAlignment: MainAxisAlignment.end,
-                children: const [
-                  WhiteText(title: 'Bid'),
-                  SizedBox(
-                    width: 100,
-                  ),
-                  WhiteText(title: 'Ask'),
-                ],
-              )),
-        ],
-      ),
-    );
-  }
-
-  @override
-  Size get preferredSize => const Size.fromHeight(kToolbarHeight);
+  sendPort.send(res);
 }
