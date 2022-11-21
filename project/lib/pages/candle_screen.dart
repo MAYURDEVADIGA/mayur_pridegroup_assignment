@@ -25,7 +25,7 @@ class _CandleScreenState extends State<CandleScreen> {
                 builder: (context, state) {
               if (state is CurrencyPairLoaded) {
                 print(state.currencyPairs[0].candles.length);
-                if (state.currencyPairs[0].candles.length < 13) {
+                if (state.currencyPairs[0].candles.length < 14) {
                   return Center(
                     child: Column(
                       mainAxisAlignment: MainAxisAlignment.center,

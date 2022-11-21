@@ -33,10 +33,14 @@ class ChangeAsks extends CurrencyPairEvent {
   final double ask1;
   final double ask2;
   final double ask3;
-  final Candle candle;
 
-  const ChangeAsks(this.index, this.ask1, this.ask2, this.ask3, this.candle);
+  const ChangeAsks(
+    this.index,
+    this.ask1,
+    this.ask2,
+    this.ask3,
+  );
 
   @override
-  List<Object> get props => [index, ask1, ask2, ask3, candle];
+  List<Object> get props => [index, ask1, ask2, ask3];
 }

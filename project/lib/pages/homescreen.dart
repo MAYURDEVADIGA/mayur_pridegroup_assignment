@@ -119,14 +119,6 @@ class _MyHomePageState extends State<MyHomePage> {
                         res[3],
                         res[4],
                         res[5],
-                        Candle(
-                          date: DateTime.now(),
-                          open: res[0],
-                          close: res[5],
-                          high: res[1],
-                          low: res[4],
-                          volume: 50,
-                        ),
                       ));
 
                   setState(() {

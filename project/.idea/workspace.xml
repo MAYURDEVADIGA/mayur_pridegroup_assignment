@@ -22,10 +22,8 @@
       <change beforePath="$PROJECT_DIR$/build/c075001b96339384a97db4862b8ab8db.cache.dill.track.dill" beforeDir="false" afterPath="$PROJECT_DIR$/build/c075001b96339384a97db4862b8ab8db.cache.dill.track.dill" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/lib/bloc/currency_pair_bloc.dart" beforeDir="false" afterPath="$PROJECT_DIR$/lib/bloc/currency_pair_bloc.dart" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/lib/bloc/currency_pair_event.dart" beforeDir="false" afterPath="$PROJECT_DIR$/lib/bloc/currency_pair_event.dart" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/lib/models/currency_pair.dart" beforeDir="false" afterPath="$PROJECT_DIR$/lib/models/currency_pair.dart" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/lib/pages/candle_screen.dart" beforeDir="false" afterPath="$PROJECT_DIR$/lib/pages/candle_screen.dart" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/lib/pages/homescreen.dart" beforeDir="false" afterPath="$PROJECT_DIR$/lib/pages/homescreen.dart" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/lib/repositories/currency_pairs_repository.dart" beforeDir="false" afterPath="$PROJECT_DIR$/lib/repositories/currency_pairs_repository.dart" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />

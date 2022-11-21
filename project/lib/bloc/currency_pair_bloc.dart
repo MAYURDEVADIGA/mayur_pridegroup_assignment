@@ -51,8 +51,7 @@ class CurrencyPairBloc extends Bloc<CurrencyPairEvent, CurrencyPairState> {
             ask1: event.ask1,
             ask2: event.ask2,
             ask3: event.ask3,
-            candles: List.from(state.currencyPairs)[event.index].candles
-              ..add(event.candle),
+            candles: List.from(state.currencyPairs)[event.index].candles,
           )
         ];
 
