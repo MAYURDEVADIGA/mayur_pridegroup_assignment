@@ -15,67 +15,67 @@ class CandleScreen extends StatefulWidget {
 
 class _CandleScreenState extends State<CandleScreen> {
   @override
+  void initState() {
+    super.initState();
+  }
+
+  @override
   Widget build(BuildContext context) {
     return MaterialApp(
-        theme: ThemeData.dark(),
-        home: Scaffold(
-          backgroundColor: Colors.black,
-          body: Stack(children: [
-            BlocBuilder<CurrencyPairBloc, CurrencyPairState>(
-                builder: (context, state) {
-              if (state is CurrencyPairLoaded) {
-                print(state.currencyPairs[0].candles.length);
-                if (state.currencyPairs[0].candles.length < 14) {
-                  return Center(
-                    child: Column(
-                      mainAxisAlignment: MainAxisAlignment.center,
-                      children: const [
-                        CircularProgressIndicator(
-                          color: Colors.white,
-                        ),
-                        SizedBox(
-                          height: 10,
-                        ),
-                        WhiteText(title: 'Populating Candle Sticks'),
-                      ],
+      theme: ThemeData.dark(),
+      home: Scaffold(
+        backgroundColor: Colors.black,
+        body: BlocBuilder<CurrencyPairBloc, CurrencyPairState>(
+            builder: (context, state) {
+          if (state is CurrencyPairLoaded) {
+            if (state.currencyPairs[0].candles.length < 14) {
+              return Center(
+                child: Column(
+                  mainAxisAlignment: MainAxisAlignment.center,
+                  children: const [
+                    CircularProgressIndicator(
+                      color: Colors.white,
                     ),
-                  );
-                } else {
-                  return SafeArea(
-                    child: Center(
-                      child: Stack(
-                        children: [
-                          Candlesticks(candles: state.currencyPairs[0].candles),
-                        ],
-                      ),
+                    SizedBox(
+                      height: 15,
                     ),
-                  );
-                }
-              } else {
-                return const Center(
-                    child: WhiteText(title: 'Something went wrong'));
-              }
-            }),
-            Positioned(
-              bottom: 15,
-              right: 10,
-              child: GestureDetector(
-                onTap: () {
-                  Navigator.pop(context);
-                },
-                child: Container(
-                  padding: const EdgeInsets.all(8),
-                  color: Colors.grey.withOpacity(0.3),
-                  child: const Center(
-                    child: Icon(
-                      Icons.arrow_back,
-                      size: 25,
-                    ),
+                    WhiteText(title: 'Populating Candle Sticks'),
+                  ],
+                ),
+              );
+            } else {
+              return SafeArea(
+                child: Center(
+                  child: Stack(
+                    children: [
+                      Candlesticks(candles: state.currencyPairs[0].candles),
+                      const Positioned(
+                          top: 25,
+                          child: Text(
+                            'EURUSD, One Second',
+                            style: TextStyle(color: Colors.green, fontSize: 25),
+                          ))
+                    ],
                   ),
                 ),
-              ),
-            ),
-          ]),
-        ));
+              );
+            }
+          } else {
+            return const Center(
+                child: WhiteText(title: 'Something went wrong'));
+          }
+        }),
+        floatingActionButton: FloatingActionButton(
+          backgroundColor: Colors.grey.withOpacity(0.5),
+          child: const Icon(
+            Icons.arrow_back,
+            color: Colors.white,
+          ),
+          onPressed: () {
+            Navigator.pop(context);
+          },
+        ),
+      ),
+    );
   }
 }

@@ -5,7 +5,7 @@ import '../constants.dart';
 
 List<CurrencyPair> currencyPairs = <CurrencyPair>[
   CurrencyPair(
-    icon: CurrencyIcon(
+    icon: const CurrencyIcon(
       text: 'C',
       topColor: Colors.lightGreen,
       bottomColor: Colors.green,
@@ -20,7 +20,7 @@ List<CurrencyPair> currencyPairs = <CurrencyPair>[
     candles: [],
   ),
   CurrencyPair(
-    icon: CurrencyIcon(
+    icon: const CurrencyIcon(
       text: 'M',
       topColor: Colors.grey,
       bottomColor: Colors.blueGrey,
@@ -35,7 +35,7 @@ List<CurrencyPair> currencyPairs = <CurrencyPair>[
     candles: [],
   ),
   CurrencyPair(
-    icon: CurrencyIcon(
+    icon: const CurrencyIcon(
       text: 'C',
       topColor: Colors.lightGreen,
       bottomColor: Colors.green,
@@ -50,7 +50,7 @@ List<CurrencyPair> currencyPairs = <CurrencyPair>[
     candles: [],
   ),
   CurrencyPair(
-    icon: CurrencyIcon(
+    icon: const CurrencyIcon(
       text: 'C',
       topColor: Colors.lightGreen,
       bottomColor: Colors.green,
@@ -65,7 +65,7 @@ List<CurrencyPair> currencyPairs = <CurrencyPair>[
     candles: [],
   ),
   CurrencyPair(
-    icon: CurrencyIcon(
+    icon: const CurrencyIcon(
       text: 'C',
       topColor: Colors.lightGreen,
       bottomColor: Colors.green,
@@ -80,7 +80,7 @@ List<CurrencyPair> currencyPairs = <CurrencyPair>[
     candles: [],
   ),
   CurrencyPair(
-    icon: CurrencyIcon(
+    icon: const CurrencyIcon(
       text: 'C',
       topColor: Colors.lightGreen,
       bottomColor: Colors.green,
@@ -95,7 +95,7 @@ List<CurrencyPair> currencyPairs = <CurrencyPair>[
     candles: [],
   ),
   CurrencyPair(
-    icon: CurrencyIcon(
+    icon: const CurrencyIcon(
       text: 'C',
       topColor: Colors.lightGreen,
       bottomColor: Colors.green,
@@ -110,7 +110,7 @@ List<CurrencyPair> currencyPairs = <CurrencyPair>[
     candles: [],
   ),
   CurrencyPair(
-    icon: CurrencyIcon(
+    icon: const CurrencyIcon(
       text: 'C',
       topColor: Colors.lightGreen,
       bottomColor: Colors.green,
@@ -125,7 +125,7 @@ List<CurrencyPair> currencyPairs = <CurrencyPair>[
     candles: [],
   ),
   CurrencyPair(
-    icon: CurrencyIcon(
+    icon: const CurrencyIcon(
       text: 'C',
       topColor: Colors.lightGreen,
       bottomColor: Colors.green,
@@ -140,7 +140,7 @@ List<CurrencyPair> currencyPairs = <CurrencyPair>[
     candles: [],
   ),
   CurrencyPair(
-    icon: CurrencyIcon(
+    icon: const CurrencyIcon(
       text: 'C',
       topColor: Colors.lightGreen,
       bottomColor: Colors.green,
@@ -155,7 +155,7 @@ List<CurrencyPair> currencyPairs = <CurrencyPair>[
     candles: [],
   ),
   CurrencyPair(
-    icon: CurrencyIcon(
+    icon: const CurrencyIcon(
       text: 'C',
       topColor: Colors.lightGreen,
       bottomColor: Colors.green,
@@ -172,7 +172,7 @@ List<CurrencyPair> currencyPairs = <CurrencyPair>[
 ];
 
 class CurrencyIcon extends StatelessWidget {
-  CurrencyIcon({
+  const CurrencyIcon({
     required this.text,
     required this.bottomColor,
     required this.topColor,

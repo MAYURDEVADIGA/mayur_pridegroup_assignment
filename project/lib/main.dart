@@ -1,14 +1,7 @@
-import 'dart:async';
-import 'dart:isolate';
-import 'dart:math';
-
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:mayur_pridegroup_assignment/bloc/currency_pair_bloc.dart';
-import 'package:mayur_pridegroup_assignment/constants.dart';
-import 'package:mayur_pridegroup_assignment/repositories/currency_pairs_repository.dart';
 import 'package:responsive_framework/responsive_framework.dart';
-
 import 'pages/homescreen.dart';
 
 void main() {

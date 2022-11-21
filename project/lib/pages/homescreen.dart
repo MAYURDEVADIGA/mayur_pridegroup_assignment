@@ -1,15 +1,12 @@
 import 'dart:async';
 import 'dart:isolate';
 import 'dart:math';
-
 import 'package:candlesticks/candlesticks.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:mayur_pridegroup_assignment/bloc/currency_pair_bloc.dart';
 import 'package:mayur_pridegroup_assignment/constants.dart';
 import 'package:mayur_pridegroup_assignment/repositories/currency_pairs_repository.dart';
-import 'package:responsive_framework/responsive_framework.dart';
-
 import 'candle_screen.dart';
 
 class MyHomePage extends StatefulWidget {
@@ -37,6 +34,7 @@ class _MyHomePageState extends State<MyHomePage> {
 
   @override
   void initState() {
+    super.initState();
     for (int i = 0; i < currencyPairs.length; i++) {
       bidBgColor.add(Colors.transparent);
       askBgColor.add(Colors.transparent);
@@ -49,39 +47,7 @@ class _MyHomePageState extends State<MyHomePage> {
 
     return Scaffold(
       backgroundColor: Colors.black,
-      appBar: AppBar(
-        backgroundColor: Colors.black,
-        title: Row(
-          mainAxisSize: MainAxisSize.max,
-          children: [
-            Flexible(
-              flex: 1,
-              child: Row(
-                mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                children: const [
-                  WhiteText(
-                    title: '!',
-                    fontStyle: FontStyle.italic,
-                  ),
-                  WhiteText(title: 'Symbol'),
-                ],
-              ),
-            ),
-            Flexible(
-                flex: 3,
-                child: Row(
-                  mainAxisAlignment: MainAxisAlignment.end,
-                  children: const [
-                    WhiteText(title: 'Bid'),
-                    SizedBox(
-                      width: 100,
-                    ),
-                    WhiteText(title: 'Ask'),
-                  ],
-                )),
-          ],
-        ),
-      ),
+      appBar: const CustomAppBar(),
       body: BlocBuilder<CurrencyPairBloc, CurrencyPairState>(
         builder: (context, state) {
           if (state is CurrencyPairInitial) {
@@ -134,108 +100,96 @@ class _MyHomePageState extends State<MyHomePage> {
               child: Column(
                 children: [
                   for (int i = 0; i < state.currencyPairs.length; i++)
-                    InkWell(
-                      onTap: () {
-                        Navigator.push(
-                          context,
-                          MaterialPageRoute(
-                              builder: (context) => const CandleScreen()),
-                        );
-                      },
-                      child: Container(
-                        margin: const EdgeInsets.only(top: 5),
-                        padding: const EdgeInsets.symmetric(horizontal: 10),
-                        width: width,
-                        height: 70,
-                        color: Colors.grey[900],
-                        child: Row(
-                          mainAxisSize: MainAxisSize.max,
-                          children: [
-                            Flexible(
-                              flex: 1,
-                              child: Row(
-                                mainAxisAlignment:
-                                    MainAxisAlignment.spaceBetween,
-                                children: [
-                                  state.currencyPairs[i].icon,
-                                  WhiteText(
-                                      title: state.currencyPairs[i].title,
-                                      size: 20,
-                                      fontWeight: FontWeight.bold),
-                                ],
-                              ),
+                    Container(
+                      margin: const EdgeInsets.only(top: 5),
+                      padding: const EdgeInsets.symmetric(horizontal: 10),
+                      width: width,
+                      height: 70,
+                      color: Colors.grey[900],
+                      child: Row(
+                        mainAxisSize: MainAxisSize.max,
+                        children: [
+                          Flexible(
+                            flex: 1,
+                            child: Row(
+                              mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                              children: [
+                                state.currencyPairs[i].icon,
+                                WhiteText(
+                                    title: state.currencyPairs[i].title,
+                                    size: 20,
+                                    fontWeight: FontWeight.bold),
+                              ],
                             ),
-                            Flexible(
-                                flex: 3,
-                                child: Row(
-                                  mainAxisAlignment: MainAxisAlignment.end,
-                                  children: [
-                                    Container(
-                                      color: bidBgColor[i],
-                                      width: 135,
-                                      height: 70,
-                                      child: Center(
-                                        child: Row(
-                                          crossAxisAlignment:
-                                              CrossAxisAlignment.start,
-                                          mainAxisAlignment:
-                                              MainAxisAlignment.end,
-                                          children: [
-                                            WhiteText(
-                                              title: state.currencyPairs[i].bid1
-                                                  .toStringAsFixed(2),
-                                            ),
-                                            WhiteText(
-                                                title: state
-                                                    .currencyPairs[i].bid2
-                                                    .toStringAsFixed(0),
-                                                size: 30),
-                                            WhiteText(
-                                              title: state.currencyPairs[i].bid3
+                          ),
+                          Flexible(
+                              flex: 3,
+                              child: Row(
+                                mainAxisAlignment: MainAxisAlignment.end,
+                                children: [
+                                  Container(
+                                    color: bidBgColor[i],
+                                    width: 135,
+                                    height: 70,
+                                    child: Center(
+                                      child: Row(
+                                        crossAxisAlignment:
+                                            CrossAxisAlignment.start,
+                                        mainAxisAlignment:
+                                            MainAxisAlignment.end,
+                                        children: [
+                                          WhiteText(
+                                            title: state.currencyPairs[i].bid1
+                                                .toStringAsFixed(2),
+                                          ),
+                                          WhiteText(
+                                              title: state.currencyPairs[i].bid2
                                                   .toStringAsFixed(0),
-                                              size: 15,
-                                            )
-                                          ],
-                                        ),
+                                              size: 30),
+                                          WhiteText(
+                                            title: state.currencyPairs[i].bid3
+                                                .toStringAsFixed(0),
+                                            size: 15,
+                                          )
+                                        ],
                                       ),
                                     ),
-                                    const SizedBox(
-                                      width: 3,
-                                    ),
-                                    Container(
-                                      color: askBgColor[i],
-                                      width: 135,
-                                      height: 70,
-                                      child: Center(
-                                        child: Row(
-                                          crossAxisAlignment:
-                                              CrossAxisAlignment.start,
-                                          mainAxisAlignment:
-                                              MainAxisAlignment.end,
-                                          children: [
-                                            WhiteText(
-                                              title: state.currencyPairs[i].ask1
-                                                  .toStringAsFixed(2),
-                                              //size: 18,
-                                            ),
-                                            WhiteText(
-                                                title: state
-                                                    .currencyPairs[i].ask2
-                                                    .toStringAsFixed(0),
-                                                size: 30),
-                                            WhiteText(
-                                              title: state.currencyPairs[i].ask3
+                                  ),
+                                  const SizedBox(
+                                    width: 3,
+                                  ),
+                                  Container(
+                                    color: askBgColor[i],
+                                    width: 135,
+                                    height: 70,
+                                    child: Center(
+                                      child: Row(
+                                        crossAxisAlignment:
+                                            CrossAxisAlignment.start,
+                                        mainAxisAlignment:
+                                            MainAxisAlignment.end,
+                                        children: [
+                                          WhiteText(
+                                            title: state.currencyPairs[i].ask1
+                                                .toStringAsFixed(2),
+                                            //size: 18,
+                                          ),
+                                          WhiteText(
+                                              title: state.currencyPairs[i].ask2
                                                   .toStringAsFixed(0),
-                                              size: 15,
-                                            )
-                                          ],
-                                        ),
+                                              size: 30),
+                                          WhiteText(
+                                            title: state.currencyPairs[i].ask3
+                                                .toStringAsFixed(0),
+                                            size: 15,
+                                          )
+                                        ],
                                       ),
                                     ),
-                                  ],
-                                )),
-                          ],
-                        ),
+                                  ),
+                                ],
+                              )),
+                        ],
                       ),
                     ),
                 ],
@@ -246,6 +200,62 @@ class _MyHomePageState extends State<MyHomePage> {
           }
         },
       ),
+      floatingActionButton: FloatingActionButton(
+        backgroundColor: Colors.grey.withOpacity(0.5),
+        child: const Icon(Icons.bar_chart, color: Colors.white),
+        onPressed: () {
+          Navigator.push(
+            context,
+            MaterialPageRoute(builder: (context) => const CandleScreen()),
+          );
+        },
+      ),
     );
   }
+}
+
+class CustomAppBar extends StatelessWidget with PreferredSizeWidget {
+  const CustomAppBar({
+    Key? key,
+  }) : super(key: key);
+
+  @override
+  Widget build(BuildContext context) {
+    return AppBar(
+      backgroundColor: Colors.black,
+      title: Row(
+        mainAxisSize: MainAxisSize.max,
+        children: [
+          Flexible(
+            flex: 1,
+            child: Row(
+              mainAxisAlignment: MainAxisAlignment.spaceBetween,
+              children: const [
+                WhiteText(
+                  title: '!',
+                  fontStyle: FontStyle.italic,
+                ),
+                WhiteText(title: 'Symbol'),
+              ],
+            ),
+          ),
+          Flexible(
+              flex: 3,
+              child: Row(
+                mainAxisAlignment: MainAxisAlignment.end,
+                children: const [
+                  WhiteText(title: 'Bid'),
+                  SizedBox(
+                    width: 100,
+                  ),
+                  WhiteText(title: 'Ask'),
+                ],
+              )),
+        ],
+      ),
+    );
+  }
+
+  @override
+  Size get preferredSize => const Size.fromHeight(kToolbarHeight);
 }
