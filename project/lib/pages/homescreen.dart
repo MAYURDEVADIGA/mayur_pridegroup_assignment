@@ -2,6 +2,7 @@ import 'dart:async';
 import 'dart:isolate';
 import 'dart:math';
 
+import 'package:candlesticks/candlesticks.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:mayur_pridegroup_assignment/bloc/currency_pair_bloc.dart';
@@ -104,14 +105,28 @@ class _MyHomePageState extends State<MyHomePage> {
                         res[0],
                         res[1],
                         res[2],
-                        [],
+                        Candle(
+                          date: DateTime.now(),
+                          open: res[0],
+                          close: res[5],
+                          high: res[1],
+                          low: res[4],
+                          volume: 50,
+                        ),
                       ));
                   context.read<CurrencyPairBloc>().add(ChangeAsks(
                         i,
                         res[3],
                         res[4],
                         res[5],
-                        [],
+                        Candle(
+                          date: DateTime.now(),
+                          open: res[0],
+                          close: res[5],
+                          high: res[1],
+                          low: res[4],
+                          volume: 50,
+                        ),
                       ));
 
                   setState(() {

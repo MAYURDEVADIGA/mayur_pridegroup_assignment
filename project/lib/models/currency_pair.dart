@@ -11,9 +11,9 @@ class CurrencyPair extends Equatable {
   final double ask1;
   final double ask2;
   final double ask3;
-  final List<Candle> candles;
+  List<Candle> candles;
 
-  const CurrencyPair({
+  CurrencyPair({
     required this.icon,
     required this.title,
     required this.bid1,
@@ -22,7 +22,7 @@ class CurrencyPair extends Equatable {
     required this.ask1,
     required this.ask2,
     required this.ask3,
-    this.candles = const [],
+    required this.candles,
   });
 
   @override
@@ -35,5 +35,6 @@ class CurrencyPair extends Equatable {
         ask1,
         ask2,
         ask3,
+        candles,
       ];
 }
