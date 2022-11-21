@@ -1,4 +1,5 @@
 import 'package:bloc/bloc.dart';
+import 'package:candlesticks/candlesticks.dart';
 import 'package:equatable/equatable.dart';
 import 'package:mayur_pridegroup_assignment/models/currency_pair.dart';
 import 'package:mayur_pridegroup_assignment/repositories/currency_pairs_repository.dart';
@@ -26,9 +27,11 @@ class CurrencyPairBloc extends Bloc<CurrencyPairEvent, CurrencyPairState> {
             ask1: List.from(state.currencyPairs)[event.index].ask1,
             ask2: List.from(state.currencyPairs)[event.index].ask2,
             ask3: List.from(state.currencyPairs)[event.index].ask3,
+            candles: List.from(state.currencyPairs)[event.index].candles
+              ..add(event.candle),
           )
         ];
-
+        // print('${event.bid2}: ${event.candles}');
         emit(CurrencyPairLoaded(
             currencyPairs: List.from(state.currencyPairs)
               ..replaceRange(event.index, event.index + 1, replacements)));
@@ -48,6 +51,7 @@ class CurrencyPairBloc extends Bloc<CurrencyPairEvent, CurrencyPairState> {
             ask1: event.ask1,
             ask2: event.ask2,
             ask3: event.ask3,
+            candles: List.from(state.currencyPairs)[event.index].candles,
           )
         ];
 
